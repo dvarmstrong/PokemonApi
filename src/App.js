@@ -1,14 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 
 function App() {
   const [Pokemon, setPokemon ] = useState([]);
 
   useEffect(() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0.')
-    .then(response => response.json())
-    .then(response => setPokemon(response.results))
+    axios.get('https://pokeapi.co/api/v2/pokemon/?limit=100000&offset=0.')
+    .then(response =>{setPokemon(response.data.results)})
+    // .then(response => setPokemon(response.results))
   }, []);
 
   return (
